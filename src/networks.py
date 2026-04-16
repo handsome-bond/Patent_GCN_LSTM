@@ -20,7 +20,6 @@ class FusionGCN(nn.Module):
         z_middle = F.relu(self.gcns[1](data_middle.x, data_middle.edge_index)) * weights[1]
         z_lower = F.relu(self.gcns[2](data_lower.x, data_lower.edge_index)) * weights[2]
         
-        # 【关键补全】：根据你最新的代码，这里使用 cat (拼接) 增加特征维度
         z_combined = torch.cat((z_upper, z_middle, z_lower), dim=1)
         return z_combined
 

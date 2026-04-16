@@ -19,7 +19,7 @@ DATA_DIR = os.path.join(BASE_DIR, 'data')
 MODEL_DIR = os.path.join(BASE_DIR, 'models')
 
 RAW_DATA_PATH = os.path.join(DATA_DIR, 'allnew.xlsx')
-PROCESSED_DATA_DIR = os.path.join(DATA_DIR, 'processed') # 建议在data下建个processed文件夹存中间产物
+PROCESSED_DATA_DIR = os.path.join(DATA_DIR, 'processed')
 MODEL_SAVE_PATH = os.path.join(MODEL_DIR, 'gcn_lstm2_model.pth')
 
 # 确保输出目录存在
