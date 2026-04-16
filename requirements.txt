@@ -1,0 +1,9 @@
+pandas
+numpy
+scikit-learn
+gensim
+jieba
+openpyxl
+scipy
+torch
+torch_geometric

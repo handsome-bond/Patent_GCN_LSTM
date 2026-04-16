@@ -1,0 +1,12 @@
+# 忽略数据和模型文件
+data/raw/
+data/processed/
+models/
+*.pth
+*.pt
+
+# 忽略 Python 缓存和虚拟环境
+__pycache__/
+*.pyc
+.venv/
+venv/
