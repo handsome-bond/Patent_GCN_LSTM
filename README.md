@@ -5,23 +5,23 @@
 ![Gensim](https://img.shields.io/badge/NLP-Doc--LDA-green)
 ![Status](https://img.shields.io/badge/Status-Completed-success)
 
-[cite_start]本项目基于 **Doc-LDA 主题模型** 与 **GCN-LSTM 深度学习模型**，对生物医药关键核心技术领域的创新主体（高校、企业、研究院、医院）在产业链上、中、下游多层网络中的合作关系进行演化推断与链路预测 [cite: 5, 6]。
+本项目基于 **Doc-LDA 主题模型** 与 **GCN-LSTM 深度学习模型**，对生物医药关键核心技术领域的创新主体（高校、企业、研究院、医院）在产业链上、中、下游多层网络中的合作关系进行演化推断与链路预测。
 
-> [cite_start]**📖 学术背景**：本项目为全国大学生相关学术竞赛参赛作品代码实现。旨在通过大数据与人工智能技术，精准识别“卡脖子”核心技术，并动态推断产学研主体的合作趋势，为生物医药产业集群建设提供情报支撑 [cite: 6]。
+> **📖 学术背景**：本项目为全国大学生相关学术竞赛参赛作品代码实现。旨在通过大数据与人工智能技术，精准识别“卡脖子”核心技术，并动态推断产学研主体的合作趋势，为生物医药产业集群建设提供情报支撑。
 
 ---
 
 ## ✨ 核心亮点 & 创新点
 
-1.  [cite_start]**主客观结合的核心专利识别**：创新性结合 **熵权法 (Entropy Weight Method)** 与 **K-Means 聚类**，从海量专利中精准筛除低价值“噪声”，提取出高技术价值与市场价值的“核心专利” [cite: 6]。
+1. **主客观结合的核心专利识别**：创新性结合 **熵权法 (Entropy Weight Method)** 与 **K-Means 聚类**，从海量专利中精准筛除低价值“噪声”，提取出高技术价值与市场价值的“核心专利”。
 
-2.  [cite_start]**Doc-LDA 关键技术主题提取**：结合 Doc2Vec 文本向量化与 LDA 主题模型，计算技术主题强度、共现强度与有效凝聚约束系数，将生物医药技术精准映射至产业链的 **上游、中游、下游** [cite: 6]。
+2. **Doc-LDA 关键技术主题提取**：结合 Doc2Vec 文本向量化与 LDA 主题模型，计算技术主题强度、共现强度与有效凝聚约束系数，将生物医药技术精准映射至产业链的 **上游、中游、下游**。
 
-3.  [cite_start]**多层异构网络构建 (Multi-layer Network)**：打破单层网络局限，以上、中、下游为三层物理空间，构建包含节点特征矩阵与非对称邻接矩阵的 PyTorch Geometric (PyG) 图张量 [cite: 6]。
+3. **多层异构网络构建 (Multi-layer Network)**：打破单层网络局限，以上、中、下游为三层物理空间，构建包含节点特征矩阵与非对称邻接矩阵的 PyTorch Geometric (PyG) 图张量。
 
-4.  **GCN-LSTM 时空链路演化推断**：
-    * [cite_start]**空间特征提取**：利用 `FusionGCN` 并行提取上中下三层图特征，并通过拼接 (`torch.cat`) 融合产业链多维拓扑结构 [cite: 5]。
-    * [cite_start]**时序动态推断**：引入 `LSTM` 长短时记忆网络，捕捉 2005-2019 年合作关系的历史演变序列，精准预测 2020-2022 年的潜在产学研合作链路 [cite: 6]。
+4. **GCN-LSTM 时空链路演化推断**：
+    * **空间特征提取**：利用 `FusionGCN` 并行提取上中下三层图特征，并通过拼接 (`torch.cat`) 融合产业链多维拓扑结构。
+    * **时序动态推断**：引入 `LSTM` 长短时记忆网络，捕捉 2005-2019 年合作关系的历史演变序列，精准预测 2020-2022 年的潜在产学研合作链路。
 
 ---
 
@@ -29,27 +29,27 @@
 
 ```text
 Patent_GCN_LSTM/
-├── data/                       # 存放数据文件
-│   ├── raw/                    # 原始专利 Excel 数据 (allnew.xlsx)
-│   └── processed/              # 运行过程中生成的特征矩阵、张量及中间数据
-├── models/                     # 存放训练好的模型权重与词典
-│   ├── your_dict.dict          # Gensim 词典文件
-│   ├── your_lda.model          # 预训练的 LDA 主题模型
-│   ├── gcn_lstm2_model.pth     # 训练完成的 GCN-LSTM 权重
-│   └── similarity_hist.png     # 预测链路的相似度分布直方图
-├── src/                        # 核心源代码包
+├── data/                      # 存放数据文件
+│   ├── raw/                   # 原始专利 Excel 数据 (allnew.xlsx)
+│   └── processed/             # 运行过程中生成的特征矩阵、张量及中间数据
+├── models/                    # 存放训练好的模型权重与词典
+│   ├── your_dict.dict         # Gensim 词典文件
+│   ├── your_lda.model         # 预训练的 LDA 主题模型
+│   ├── gcn_lstm2_model.pth    # 训练完成的 GCN-LSTM 权重
+│   └── similarity_hist.png    # 预测链路的相似度分布直方图
+├── src/                       # 核心源代码包
 │   ├── __init__.py
-│   ├── config.py               # 全局超参数与路径配置
-│   ├── data_preprocessing.py   # 数据清洗、熵权法与 K-Means 聚类
-│   ├── nlp_pipeline.py         # 正则清洗、分词与 Doc-LDA 主题提取
-│   ├── graph_builder.py        # 多层网络邻接矩阵构建与 PyG 图数据生成
-│   ├── networks.py             # FusionGCN 与 GCN-LSTM 神经网络结构定义
-│   ├── train_eval.py           # 负采样增强、模型训练、多指标评估与链路预测
-│   └── pipeline.py             # 业务流水线调度代码
-├── main.py                     # 🚀 程序的总控制台入口
-├── train_lda.py                # 独立脚本：用于重新训练 LDA 模型
-├── requirements.txt            # 项目依赖包
-└── README.md                   # 项目说明文档
+│   ├── config.py              # 全局超参数与路径配置
+│   ├── data_preprocessing.py  # 数据清洗、熵权法与 K-Means 聚类
+│   ├── nlp_pipeline.py        # 正则清洗、分词与 Doc-LDA 主题提取
+│   ├── graph_builder.py       # 多层网络邻接矩阵构建与 PyG 图数据生成
+│   ├── networks.py            # FusionGCN 与 GCN-LSTM 神经网络结构定义
+│   ├── train_eval.py          # 负采样增强、模型训练、多指标评估与链路预测
+│   └── pipeline.py            # 业务流水线调度代码
+├── main.py                    # 🚀 程序的总控制台入口
+├── train_lda.py               # 独立脚本：用于重新训练 LDA 模型
+├── requirements.txt           # 项目依赖包
+└── README.md                  # 项目说明文档
 ```
 
 ---
@@ -58,14 +58,14 @@ Patent_GCN_LSTM/
 
 本项目依赖于 PyTorch 及其图神经网络扩展库 PyTorch Geometric (PyG)。建议使用 Anaconda 创建独立的虚拟环境。
 
-1.  **克隆仓库**：
+1. **克隆仓库**：
 
     ```bash
     git clone [https://github.com/handsome-bond/Patent_GCN_LSTM.git](https://github.com/handsome-bond/Patent_GCN_LSTM.git)
     cd Patent_GCN_LSTM
     ```
 
-2.  **安装依赖**：
+2. **安装依赖**：
 
     ```bash
     pip install -r requirements.txt
@@ -130,14 +130,14 @@ python main.py --stage all
 
 根据实际划分的上游、中游、下游三层图结构分别进行评估，GCN-LSTM 模型表现出极强的鲁棒性与泛化能力：
 
-* [cite_start]**AUC** > 0.5 （整体预测效果远高于随机推断） [cite: 6]。
-* [cite_start]**Precision / Recall / F1-Score** 均保持在较高水平，准确捕捉了时空序列中的拓扑特征演化 [cite: 5]。
+* **AUC** > 0.5 （整体预测效果远高于随机推断）。
+* **Precision / Recall / F1-Score** 均保持在较高水平，准确捕捉了时空序列中的拓扑特征演化。
 
 ### 2. 产学研演化推断实例
 
-* [cite_start]**上游（高校与企业）**：模型成功推断出中南大学与相关化工、医药科技企业（如四川轻化工大学等）的潜在合作链路，合作方向聚焦于绿色化合物制备技术 [cite: 6]。
-* [cite_start]**中游（大型企业群）**：精准捕捉如“中国石油化工股份有限公司”与相关研究院之间的联合攻关趋势，攻坚制备装置等大规模生产工艺 [cite: 6]。
-* [cite_start]**下游（企业与医疗机构）**：揭示了服务落地环节（如智能化监控、给药系统）的紧密联合生态 [cite: 6]。
+* **上游（高校与企业）**：模型成功推断出中南大学与相关化工、医药科技企业（如四川轻化工大学等）的潜在合作链路，合作方向聚焦于绿色化合物制备技术。
+* **中游（大型企业群）**：精准捕捉如“中国石油化工股份有限公司”与相关研究院之间的联合攻关趋势，攻坚制备装置等大规模生产工艺。
+* **下游（企业与医疗机构）**：揭示了服务落地环节（如智能化监控、给药系统）的紧密联合生态。
 
 *(具体链路预测分数与相似度直方图将保存在 `models/similarity_hist.png` 中)*
 
@@ -145,6 +145,6 @@ python main.py --stage all
 
 ## 📝 作者与版权信息
 
-* [cite_start]本项目为学术竞赛专有代码，算法逻辑与指标体系设计详情请参考对应学术论文《生物医药关键核心创新主体在产业链多层网络中的合作关系演化推断分析》 [cite: 6]。
+* 本项目为学术竞赛专有代码，算法逻辑与指标体系设计详情请参考对应学术论文《生物医药关键核心创新主体在产业链多层网络中的合作关系演化推断分析》。
 * **作者**: handsome-bond
-* **License**: MIT License
+* **许可证**: MIT License
